@@ -1,0 +1,7 @@
+parameters:
+#    jonaguera_aula_mentor_alimentos.example.class: Jonaguera\AulaMentor\AlimentosBundle\Example
+
+services:
+#    jonaguera_aula_mentor_alimentos.example:
+#        class: %jonaguera_aula_mentor_alimentos.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

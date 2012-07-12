@@ -1,3 +1,7 @@
+JonagueraAulaMentorAlimentosBundle:
+    resource: "@JonagueraAulaMentorAlimentosBundle/Resources/config/routing.yml"
+    prefix:   /alimentos
+
 # Internal routing configuration to handle ESI
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"

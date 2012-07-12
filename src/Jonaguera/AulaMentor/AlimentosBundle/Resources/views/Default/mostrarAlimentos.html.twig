@@ -1,0 +1,6 @@
+{% extends 'JonagueraAulaMentorAlimentosBundle::layout.html.twig' %}
+
+{% block contenido %}
+ {% include 'JonagueraAulaMentorAlimentosBundle:Default:_tablaAlimentos.html.twig' with {'alimentos': alimentos} %}
+
+{% endblock %}
