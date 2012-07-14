@@ -25,3 +25,7 @@ JAMAB_buscar_combinada:
 JAMAB_ver:
   pattern:  /ver/{id}
   defaults: { _controller: JonagueraAulaMentorAlimentosBundle:Default:ver }
+
+JAMAB_testinfosender:
+  pattern:  /testinfosender
+  defaults: { _controller: JonagueraAulaMentorAlimentosBundle:Default:testInfoSender }

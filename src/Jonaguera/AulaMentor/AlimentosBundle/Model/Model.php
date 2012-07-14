@@ -15,7 +15,6 @@ namespace Jonaguera\AulaMentor\AlimentosBundle\Model;
        mysql_select_db($dbname, $mvc_bd_conexion);
 
        mysql_set_charset('utf8');
-
        $this->conexion = $mvc_bd_conexion;
      }
 

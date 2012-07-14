@@ -1,7 +1,14 @@
 parameters:
-#    jonaguera_aula_mentor_alimentos.example.class: Jonaguera\AulaMentor\AlimentosBundle\Example
+  jamab.model.class: Jonaguera\AulaMentor\AlimentosBundle\Model\Model
+  jamab.infosender.class: Jonaguera\AulaMentor\AlimentosBundle\Model\InfoSender
+  jamab.wikilink.class: Jonaguera\AulaMentor\AlimentosBundle\Model\WikiLink
 
 services:
-#    jonaguera_aula_mentor_alimentos.example:
-#        class: %jonaguera_aula_mentor_alimentos.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+  jamab.model:
+    class: %jamab.model.class%
+    arguments: [%database_name%, %database_user%, %database_password%, %database_host%]
+  jamab.infosender:
+    class: %jamab.infosender.class%
+    arguments: [@jamab.model, @mailer ]
+  jamab.wikilink:
+    class: %jamab.wikilink.class%

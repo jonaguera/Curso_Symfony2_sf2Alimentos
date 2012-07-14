@@ -25,13 +25,12 @@ class DefaultController extends Controller {
     }
 
     public function listarAction() {
-        $m = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
-                        Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
+        $m = $this->get('jamab.model');
 
         $params = array(
-            'alimentos' => $m->dameAlimentos(),
+            'alimentos' => $this->get('jamab.wikilink')->addWikiLink($m->dameAlimentos()),
         );
-
+        
         return $this->render('JonagueraAulaMentorAlimentosBundle:Default:mostrarAlimentos.html.twig', $params);
     }
 
@@ -45,8 +44,8 @@ class DefaultController extends Controller {
             'grasa' => '',
         );
 
-        $m = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
-                        Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
+        $m = $this->get('jamab.model');
+
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -76,12 +75,12 @@ class DefaultController extends Controller {
             'resultado' => array(),
         );
 
-        $m = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
-                        Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
+        $m = $this->get('jamab.model');
+
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $params['nombre'] = $_POST['nombre'];
-            $params['resultado'] = $m->buscarAlimentosPorNombre($_POST['nombre']);
+            $params['resultado'] = $this->get('jamab.wikilink')->addWikiLink($m->buscarAlimentosPorNombre($_POST['nombre']));
         }
 
         return $this->render('JonagueraAulaMentorAlimentosBundle:Default:buscarPorNombre.html.twig', $params);
@@ -94,15 +93,15 @@ class DefaultController extends Controller {
             'resultado' => array(),
         );
 
-        $m = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
-                        Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
+        $m = $this->get('jamab.model');
+
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $params['resultado'] = $m->buscarPorEnergia($_POST['energia_min'], $_POST['energia_max']);
+            $params['resultado'] = $this->get('jamab.wikilink')->addWikiLink($m->buscarPorEnergia($_POST['energia_min'], $_POST['energia_max']));
         }
         return $this->render('JonagueraAulaMentorAlimentosBundle:Default:buscarPorEnergia.html.twig', $params);
     }
-    
+
     public function busquedaCombinadaAction() {
         $params = array(
             'energia_min' => '',
@@ -118,11 +117,12 @@ class DefaultController extends Controller {
             'resultado' => array(),
         );
 
-        $m = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
-                        Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
+        $m = $this->get('jamab.model');
+
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $params['resultado'] = $m->busquedaCombinada(array(
+            $params['resultado'] = $this->get('jamab.wikilink')->addWikiLink(
+                 $m->busquedaCombinada(array(
                 'energia_min' => $_POST['energia_min'],
                 'energia_max' => $_POST['energia_max'],
                 'proteina_min' => $_POST['proteina_min'],
@@ -134,6 +134,7 @@ class DefaultController extends Controller {
                 'grasatotal_min' => $_POST['grasatotal_min'],
                 'grasatotal_max' => $_POST['grasatotal_max']
                     )
+                 )
             );
         }
 
@@ -142,18 +143,28 @@ class DefaultController extends Controller {
 
     public function verAction($id) {
 
-        $m = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
-                        Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
+        $m = $this->get('jamab.model');
 
-        $alimento = $m->dameAlimento($id);
+
+        $alimento = $this->get('jamab.wikilink')->addWikiLink($m->dameAlimento($id));
 
         if (!$alimento) {
             throw new \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException();
         }
-        
+
         $params = $alimento;
 
         return $this->render('JonagueraAulaMentorAlimentosBundle:Default:verAlimento.html.twig', $params);
+    }
+
+    public function testInfoSenderAction() {
+        $infosender = $this->get('jamab.infosender');
+
+        $infosender->send('%cebolla%', 'jonaguera@gmail.com');
+
+        return new \Symfony\Component\HttpFoundation\Response(
+                        '<html><body><h2>Se ha enviado información a
+              jonaguera@gmail.com</h2></body></html>');
     }
 
 }
