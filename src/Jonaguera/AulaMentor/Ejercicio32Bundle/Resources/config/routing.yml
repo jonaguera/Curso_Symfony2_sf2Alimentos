@@ -1,3 +1,7 @@
 JonagueraAulamentorEjercicio_3_2Bundle_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: JonagueraAulaMentorEjercicio32Bundle:Default:index }
+
+JonagueraAulamentorEjercicio_3_2Bundle_hola:
+    pattern:  /hola
+    defaults: { _controller: JonagueraAulaMentorEjercicio32Bundle:Default:hola }
