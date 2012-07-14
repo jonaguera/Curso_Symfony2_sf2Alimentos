@@ -14,6 +14,14 @@ JAMAB_buscar:
   pattern:  /buscar
   defaults: { _controller: JonagueraAulaMentorAlimentosBundle:Default:buscarPorNombre }
 
+JAMAB_buscar_energia:
+  pattern:  /buscar_energia
+  defaults: { _controller: JonagueraAulaMentorAlimentosBundle:Default:buscarPorEnergia }
+
+JAMAB_buscar_combinada:
+  pattern:  /buscar_combinada
+  defaults: { _controller: JonagueraAulaMentorAlimentosBundle:Default:busquedaCombinada }
+
 JAMAB_ver:
   pattern:  /ver/{id}
   defaults: { _controller: JonagueraAulaMentorAlimentosBundle:Default:ver }

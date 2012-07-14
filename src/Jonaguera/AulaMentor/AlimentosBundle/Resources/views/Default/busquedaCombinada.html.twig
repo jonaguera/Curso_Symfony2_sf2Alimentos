@@ -1,0 +1,45 @@
+{% extends 'JonagueraAulaMentorAlimentosBundle::layout.html.twig' %}
+{% block contenido %}
+<form name="formBusqueda" action="{{ path('JAMAB_buscar_combinada') }}" method="POST">
+
+  <table>
+      <tr>
+          <td>energía:</td>
+          <td><input type="text" name="energia_min" value="{{energia_min}}"></td>
+          <td><input type="text" name="energia_max" value="{{energia_max}}"></td>
+      </tr>
+      <tr>
+          <td>proteina:</td>
+          <td><input type="text" name="proteina_min" value="{{proteina_min}}"></td>
+          <td><input type="text" name="proteina_max" value="{{proteina_max}}"></td>
+      </tr>
+      <tr>
+          <td>hidratos de carbono:</td>
+          <td><input type="text" name="hidratocarbono_min" value="{{hidratocarbono_min}}"></td>
+          <td><input type="text" name="hidratocarbono_max" value="{{hidratocarbono_max}}"></td>
+      </tr>
+      <tr>
+          <td>fibra:</td>
+          <td><input type="text" name="fibra_min" value="{{fibra_min}}"></td>
+          <td><input type="text" name="fibra_max" value="{{fibra_max}}"></td>
+      </tr>
+      <tr>
+          <td>Grasa total:</td>
+          <td><input type="text" name="grasatotal_min" value="{{grasatotal_min}}"></td>
+          <td><input type="text" name="grasatotal_max" value="{{grasatotal_max}}"></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+          <td><input type="submit" value="buscar"></td>
+      </tr>
+  </table>
+
+  </table>
+
+</form>
+
+{% if resultado %}
+{% include 'JonagueraAulaMentorAlimentosBundle:Default:_tablaAlimentos.html.twig' with {'alimentos': resultado} %}
+{% endif %}
+{% endblock %}

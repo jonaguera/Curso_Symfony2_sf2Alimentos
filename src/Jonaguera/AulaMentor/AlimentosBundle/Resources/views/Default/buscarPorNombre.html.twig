@@ -1,7 +1,5 @@
- {% extends 'JonagueraAulaMentorAlimentosBundle::layout.html.twig' %}
-
-  {% block contenido %}
-
+{% extends 'JonagueraAulaMentorAlimentosBundle::layout.html.twig' %}
+{% block contenido %}
 <form name="formBusqueda" action="{{ path('JAMAB_buscar') }}" method="POST">
 
     <table>
@@ -16,9 +14,7 @@
 </table>
 
 </form>
-
-  {% if resultado %}
-  {% include 'JonagueraAulaMentorAlimentosBundle:Default:_tablaAlimentos.html.twig' with {'alimentos': resultado} %}
-  {% endif %}
-
- {% endblock %}
+{% if resultado %}
+{% include 'JonagueraAulaMentorAlimentosBundle:Default:_tablaAlimentos.html.twig' with {'alimentos': resultado} %}
+{% endif %}
+{% endblock %}

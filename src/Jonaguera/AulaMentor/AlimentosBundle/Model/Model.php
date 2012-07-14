@@ -57,26 +57,43 @@ namespace Jonaguera\AulaMentor\AlimentosBundle\Model;
 
          return $alimentos;
      }
-     
+
+    public function buscarPorEnergia($energia_min, $energia_max) {
+        $sql = "select * from alimentos where energia between " . $energia_min . " and " . $energia_max . " order by energia desc";
+
+        $result = mysql_query($sql, $this->conexion);
+
+        $alimentos = array();
+        while ($row = mysql_fetch_assoc($result)) {
+            $alimentos[] = $row;
+        }
+
+        return $alimentos;
+    }
+    
      public function busquedaCombinada($parametros)
      {
          
          $where = "WHERE 1=1 ";
          foreach ($parametros as $clave => $valor){
-             if (isset($valor)){
+             if (is_numeric($valor)){
                  if (substr(strrev($clave),0,3)=="xam"){
-                    $where .= " AND '".$clave."' <= ".$valor;
+                    $where .= " AND ".substr($clave,0,strlen($clave)-4)." <= ".$valor;
                  }
                  else {
-                    $where .= " AND '".$clave."' >= ".$valor;
+                    $where .= " AND ".substr($clave,0,strlen($clave)-4)." >= ".$valor;
                  }
              }
          }
          
+         
+         
          $sql = "select * from alimentos ".$where." order by energia desc";
 
+         print_r($sql);
+         
          $result = mysql_query($sql, $this->conexion);
-
+         
          $alimentos = array();
          while ($row = mysql_fetch_assoc($result))
          {

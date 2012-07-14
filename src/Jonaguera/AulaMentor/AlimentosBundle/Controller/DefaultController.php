@@ -87,6 +87,22 @@ class DefaultController extends Controller {
         return $this->render('JonagueraAulaMentorAlimentosBundle:Default:buscarPorNombre.html.twig', $params);
     }
 
+    public function buscarPorEnergiaAction() {
+        $params = array(
+            'energia_min' => '',
+            'energia_max' => '',
+            'resultado' => array(),
+        );
+
+        $m = new Model(Config::$mvc_bd_nombre, Config::$mvc_bd_usuario,
+                        Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $params['resultado'] = $m->buscarPorEnergia($_POST['energia_min'], $_POST['energia_max']);
+        }
+        return $this->render('JonagueraAulaMentorAlimentosBundle:Default:buscarPorEnergia.html.twig', $params);
+    }
+    
     public function busquedaCombinadaAction() {
         $params = array(
             'energia_min' => '',
@@ -106,7 +122,6 @@ class DefaultController extends Controller {
                         Config::$mvc_bd_clave, Config::$mvc_bd_hostname);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $params['nombre'] = $_POST['nombre'];
             $params['resultado'] = $m->busquedaCombinada(array(
                 'energia_min' => $_POST['energia_min'],
                 'energia_max' => $_POST['energia_max'],

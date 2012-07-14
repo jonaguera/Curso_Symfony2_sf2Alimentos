@@ -1,0 +1,22 @@
+{% extends 'JonagueraAulaMentorAlimentosBundle::layout.html.twig' %}
+{% block contenido %}
+<form name="formBusqueda" action="{{ path('JAMAB_buscar_energia') }}" method="POST">
+
+  <table>
+      <tr>
+          <td>Energía mínima:</td>
+          <td><input type="text" name="energia_min" value="{{ energia_min }}"></td>
+          <td>Energía máxima:</td>
+          <td><input type="text" name="energia_max" value="{{ energia_max }}"></td>
+          <td><input type="submit" value="buscar"></td>
+      </tr>
+  </table>
+
+  </table>
+
+</form>
+
+{% if resultado %}
+{% include 'JonagueraAulaMentorAlimentosBundle:Default:_tablaAlimentos.html.twig' with {'alimentos': resultado} %}
+{% endif %}
+{% endblock %}
