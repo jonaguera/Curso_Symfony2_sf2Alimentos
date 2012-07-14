@@ -1,3 +1,7 @@
+JonagueraAulamentorEjercicio_3_2Bundle:
+    resource: "@JonagueraAulaMentorEjercicio32Bundle/Resources/config/routing.yml"
+    prefix:   /fuentes
+
 JonagueraAulaMentorAlimentosBundle:
     resource: "@JonagueraAulaMentorAlimentosBundle/Resources/config/routing.yml"
     prefix:   /alimentos

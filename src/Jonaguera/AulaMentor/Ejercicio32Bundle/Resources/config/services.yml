@@ -1,0 +1,7 @@
+parameters:
+#    jonaguera_aulamentor_ejercicio.3.2.example.class: Jonaguera\Aulamentor\Ejercicio_3_2Bundle\Example
+
+services:
+#    jonaguera_aulamentor_ejercicio.3.2.example:
+#        class: %jonaguera_aulamentor_ejercicio.3.2.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
